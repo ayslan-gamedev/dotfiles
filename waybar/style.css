@@ -1,0 +1,53 @@
+* {
+  font-family: "NotoSansMono Nerd Font";
+  font-size: 14px;
+
+  margin: 0;
+  border: 0;
+  padding: 0;
+  border-radius: 0;
+}
+
+window#waybar {
+  background-color: transparent;
+  color: #ffffff;
+}
+
+#workspaces button {
+  padding: 0px;
+  margin: 0 1px;
+  background-color: transparent;
+  color: #ffffff;
+
+  transition: 0.2s;
+}
+
+#workspaces button:hover {
+  background: white;
+}
+
+#workspaces button.active {
+  box-shadow: inset 0 -2px #ffffff;
+}
+
+#workspaces button.urgent {
+  background: #eb4d4b;
+}
+
+#custom-powwer,
+#workspaces,
+#pulseaudio,
+#custom-media,
+#window,
+#network,
+#cpu,
+#memory,
+#battery,
+/* #clock, */
+#custom-notification {
+  margin: 0 10px;
+}
+
+#clock {
+  margin: 0 5px;
+}

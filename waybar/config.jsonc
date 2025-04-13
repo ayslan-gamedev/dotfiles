@@ -1,0 +1,142 @@
+// -*- mode: jsonc -*-
+{
+  // General bar settings
+  "layer": "top",
+  "position": "bottom",
+  "height": 1,
+  "spacing": 0,
+  // Module arrangement
+  "modules-left": [
+    "custom/notification",
+    "clock",
+    "hyprland/workspaces",
+    "pulseaudio",
+    "custom/media",
+  ],
+  "modules-center": [
+    "hyprland/window"
+  ],
+  "modules-right": [
+    "network",
+    "cpu",
+    "memory",
+    "battery"
+  ],
+  // Workspaces module
+  "hyprland/workspaces": {
+    "format": "<sub>{icon}</sub>{windows}",
+  },
+  // Focused window module
+  "hyprland/window": {
+    "format": "{}",
+    "rewrite": {
+      "(.*) - Vivaldi": "Vivaldi",
+      "(.*) - nvim": "nvim",
+    },
+    "separate-outputs": false,
+  },
+  // Clock module
+  "clock": {
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format": "{:%d/%m/%y - %H:%M}",
+  },
+  // CPU usage module
+  "cpu": {
+    "format": "{usage}% ",
+    "tooltip": false,
+  },
+  // Memory usage module
+  "memory": {
+    "format": "{}% {swapUsed}% ",
+    // "format": "{avail}/{used} ({total}) | Swap: {swapAvail}/{swapUsed} GiB ({swapTotal} GiB)",
+  },
+  // Battery module
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15,
+    },
+    "format": "{capacity}% {icon}",
+    "format-full": "{capacity}% {icon}",
+    "format-charging": "{capacity}% ",
+    "format-plugged": "{capacity}% ",
+    "format-alt": "{time} {icon}",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+  },
+  // Secondary battery (optional, remove if unused)
+  "battery#bat2": {
+    "bat": "BAT2",
+  },
+  // Audio (PulseAudio) module
+  "pulseaudio": {
+    "format": "{volume}% {icon} {format_source}",
+    "format-bluetooth": "{volume}% {icon} {format_source}",
+    "format-bluetooth-muted": " {icon} {format_source}",
+    "format-muted": " {format_source}",
+    "format-source": "{volume}% ",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        ""
+      ],
+    },
+    "on-click": "pavucontrol",
+  },
+  // Media player module
+  "custom/media": {
+    "format": "{icon} {}",
+    "escape": true,
+    "return-type": "json",
+    "max-length": 40,
+    "on-click": "playerctl play-pause",
+    "on-click-right": "playerctl stop",
+    "on-scroll-up": "playerctl next",
+    "on-scroll-down": "playerctl previous",
+    "smooth-scrolling-threshold": 10,
+    "exec": "$HOME/.config/waybar/custom_modules/mediaplayer.py 2> /dev/null",
+  },
+  // Notification indicator module
+  "custom/notification": {
+    "tooltip": false,
+    "format": "{} {icon}",
+    "format-icons": {
+      "notification": "<span foreground='red'><sup></sup></span>",
+      "none": "",
+      "dnd-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-none": "",
+      "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "inhibited-none": "",
+      "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-inhibited-none": "",
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true,
+  },
+  // Network module
+  "network": {
+    "format-wifi": "{essid} ({signalStrength}%) ",
+    "format-ethernet": "{ipaddr}/{cidr} ",
+    "tooltip-format": "{ifname} via {gwaddr} ",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "Disconnected ⚠",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}",
+  },
+}
