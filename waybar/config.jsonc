@@ -20,6 +20,7 @@
     "network",
     "cpu",
     "memory",
+    "temperature",
     "battery"
   ],
   // Workspaces module
@@ -48,8 +49,16 @@
   },
   // Memory usage module
   "memory": {
-    "format": "{}% {swapUsed}% ",
+    "format": "{}% ",
     // "format": "{avail}/{used} ({total}) | Swap: {swapAvail}/{swapUsed} GiB ({swapTotal} GiB)",
+  },
+  // temperature
+  "temperature": {
+    // "thermal-zone": 2,
+    // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+    // "critical-threshold": 80,
+    // "format-critical": "{temperatureC}°C ",
+    "format": " {temperatureC}°C ",
   },
   // Battery module
   "battery": {
@@ -95,7 +104,7 @@
         ""
       ],
     },
-    "on-click": "pavucontrol",
+    "on-click": "$HOME/.config/waybar/custom_modules/togglesinks.sh",
   },
   // Media player module
   "custom/media": {
