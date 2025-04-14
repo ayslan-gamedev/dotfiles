@@ -121,7 +121,10 @@ class PlayerManager:
         player_name = player.props.player_name
         artist = player.get_artist()
         title = player.get_title()
-        title = (title or "").replace("&", "&amp;")
+
+        # Verifique se title é None antes de aplicar o replace
+        if title is not None:
+            title = title.replace("&", "&amp;")
 
         track_info = ""
         if (
